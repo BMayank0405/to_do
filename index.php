@@ -1,3 +1,25 @@
+<?php
+require_once 'app/init.php';
+
+//database is used using prepared statements
+    $itemQuery =  $db->prepare("
+     SELECT id , name , done 
+            FROM item
+            WHERE user = :user 
+    ");
+
+   $itemQuery->execute([
+           'user'=> $_SESSION['user_id']
+   ]);
+
+   $items = $itemQuery->rowCount()?$itemQuery:[];
+
+   foreach($items as $item){
+       echo $item['name'];
+   }
+?>
+
+
 <!DOCTYPE HTML>
 <HTML>
 <HEAD>
@@ -13,14 +35,14 @@
       <h1 class="header" >To do</h1>
       <ul class="items">
          <li>
-            <span class="item">first</span><a href="#" class="done-button">Mark as done</a>
+            <span class="item">first</span><a href="mark.php?as=&" class="done-button">Mark as done</a>
          </li>
          <li>
             <span class="item done">second</span>
          </li>
       </ul>
    <form class="item-add" action="#" method="post">
-      <input type="text" name="name" placeholder="type a new item" autocomplete="off" required class="input">
+      <input type="text" name="name" placeholder="Type a new item" autocomplete="off" required class="input" maxlength="100" >
       <input type="submit" value="Add" class="submit">
 
    </form>

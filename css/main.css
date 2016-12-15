@@ -2,12 +2,13 @@ body {
     background-color:#eceff0;
 }
 body,input {
-    font:1em 'Open Sans', sans-serif;
+    font: 1em 'Open Sans', sans-serif;
     color:#336639 ;
 }
 a {
     text-decoration: none;
     border-bottom: 1px dashed #336639;
+
 }
 
 .list {
@@ -82,4 +83,5 @@ input:focus{
     padding:3px 6px;
     border:0;
     opacity:0.4;
+    margin-left: 10px;
 }
